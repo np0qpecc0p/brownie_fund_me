@@ -1,0 +1,21 @@
+dependencies: #the part of brownie config where we set thew github repository to download chainlink-brownie-contracts
+  - smartcontractkit/chainlink-brownie-contracts@0.8.0
+
+compiler:  #settings of compiler of solidity to json object
+  solc: 
+    remappings: #remapings from nmps download path to github path
+      - '@chainlink=smartcontractkit/chainlink-brownie-contracts@0.8.0'
+dotenv: .env # environmental variables
+networks:  # setings of different brownie networks
+ ganache-local:
+   verify: False
+ sepolia:
+   eth_usd_price_feed:  '0x694AA1769357215DE4FAC081bf1f309aDC325306'
+   verify: True
+ development:
+  verify: False
+  # i had to add this gas_price variable after "meempool long time error"
+  gas_price: 'auto'
+wallets:
+   from_key: ${PRIVATE_KEY}
+      
